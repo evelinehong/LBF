@@ -37,7 +37,7 @@ python run_seq2tree.py --model='mapo' --name='mapo'
     @inproceedings{Li2020ClosedLN,
       title={Closed Loop Neural-Symbolic Learning via Integrating Neural Perception, Grammar Parsing, and Symbolic Reasoning},
       author={Qing Li and Siyuan Huang and Yining Hong and Y. Chen and Y. Wu and S. Zhu},
-      journal={ArXiv},
+      journal={The Thirty-eighth International Conference on Machine Learning},
       year={2020},
       volume={abs/2006.06649}
     }
