@@ -31,12 +31,12 @@ python run_seq2tree.py --model='mapo' --name='mapo'
     @inproceedings{hong2021weakly,
       title     = {Learning by Fixing: Solving Math Word Problems with Weak Supervision},
       author    = {Hong, Yining and Li, Qing and Ciao, Daniel and Huang, Siyuan and Zhu, Song-Chun},
-      booktitle = {Proceedings of the The Thirty-Fifth AAAI Conference on Artificial Intelligence, {AAAI-21}},            
+      booktitle = {Proceedings of the Thirty-Fifth AAAI Conference on Artificial Intelligence, {AAAI-21}},            
       year      = {2021}
     }
     @inproceedings{Li2020ClosedLN,
       title={Closed Loop Neural-Symbolic Learning via Integrating Neural Perception, Grammar Parsing, and Symbolic Reasoning},
       author={Qing Li and Siyuan Huang and Yining Hong and Y. Chen and Y. Wu and S. Zhu},
-      journal={The Thirty-eighth International Conference on Machine Learning},
+      journal={Proceedings of the Thirty-eighth International Conference on Machine Learning},
       year={2020}
     }
