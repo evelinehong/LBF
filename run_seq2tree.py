@@ -201,16 +201,6 @@ for epoch in range(n_epochs):
 
         with open('results/' + model_name + '_fold' + str(fold) + '_stats.json', 'w') as fout:
             json.dump(stats, fout)
-        # with open('results/' + 'nolength_beam' + '_fold' + str(fold) + '_buffer.json', 'w') as fout:
-        #     for id2, ori, seg, ans, gt, gen in zip(buffer_dict['id'], buffer_dict['original_text'], buffer_dict['segmented_text'], buffer_dict['ans'], buffer_dict['gt_equation'], buffer_dict['gen_equations']):
-        #         fout.write("{\n")
-        #         fout.write("    'id':'"+str(id2)+"'\n")
-        #         fout.write("    'original_text':'"+ori+"'\n")
-        #         fout.write("    'segmented_text':'"+seg+"'\n")
-        #         fout.write("    'ground_truth_equation':'"+gt+"'\n")
-        #         fout.write("    'generated_equations':'"+str(gen)+"'\n")
-        #         fout.write("    'ans':'"+ans+"'\n")
-        #         fout.write("}\n")
 
         print(value_ac1, eval_total1)
         print("test_answer_acc5", float(value_ac5) / eval_total5)
