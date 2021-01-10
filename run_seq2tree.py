@@ -199,9 +199,6 @@ for epoch in range(n_epochs):
         stats['test_result_acc1'].append(float(value_ac1) / eval_total1)
         stats['test_result_acc5'].append(float(value_ac5) / eval_total5)
 
-        with open('results/' + model_name + '_fold' + str(fold) + '_stats.json', 'w') as fout:
-            json.dump(stats, fout)
-
         print(value_ac1, eval_total1)
         print("test_answer_acc5", float(value_ac5) / eval_total5)
         print("test_answer_acc3", float(value_ac3) / eval_total3)
