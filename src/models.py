@@ -48,7 +48,7 @@ class Attn(nn.Module):
         attn_energies = attn_energies.squeeze(1)
         attn_energies = attn_energies.view(max_len, this_batch_size).transpose(0, 1)  # B x S
         if seq_mask is not None:
-            attn_energies = attn_energies.masked_fill_(seq_mask, -1e12)
+            attn_energies = attn_energies.masked_fill_(seq_mask.bool(), -1e12)
         attn_energies = self.softmax(attn_energies)
         # Normalize energies to weights in range 0 to 1, resize to B x 1 x S
         return attn_energies.unsqueeze(1)
@@ -125,7 +125,7 @@ class Score(nn.Module):
         score = score.squeeze(1)
         score = score.view(this_batch_size, -1)  # B x O
         if num_mask is not None:
-            score = score.masked_fill_(num_mask, -1e12)
+            score = score.masked_fill_(num_mask.bool(), -1e12)
         return score
 
 
@@ -152,7 +152,7 @@ class TreeAttn(nn.Module):
         attn_energies = attn_energies.squeeze(1)
         attn_energies = attn_energies.view(max_len, this_batch_size).transpose(0, 1)  # B x S
         if seq_mask is not None:
-            attn_energies = attn_energies.masked_fill_(seq_mask, -1e12)
+            attn_energies = attn_energies.masked_fill_(seq_mask.bool(), -1e12)
         attn_energies = nn.functional.softmax(attn_energies, dim=1)  # B x S
 
         return attn_energies.unsqueeze(1)
@@ -202,6 +202,29 @@ class Prediction(nn.Module):
 
         self.embedding_weight = nn.Parameter(torch.randn(1, input_size, hidden_size))
 
+    #     self.concat_l = nn.Linear(hidden_size + 64, hidden_size)
+    #     self.concat_r = nn.Linear(hidden_size * 2 + 64, hidden_size)
+    #     self.concat_lg = nn.Linear(hidden_size + 64, hidden_size)
+    #     self.concat_rg = nn.Linear(hidden_size * 2 + 64, hidden_size)
+
+    #     self.ops = nn.Linear(hidden_size * 2, op_nums)
+
+    #     self.attn = TreeAttn(hidden_size, hidden_size)
+    #     self.score = Score(hidden_size * 2, hidden_size)
+
+    # def forward(self, noises, node_stacks, left_childs, encoder_outputs, num_pades, padding_hidden, seq_mask, mask_nums):
+    #     current_embeddings = []
+    #     for st, noise in zip(node_stacks, noises):
+    #         if len(st) == 0:
+    #             noise = noise.unsqueeze(0)
+    #             padding_hidden2 = torch.cat((padding_hidden, noise), dim=1)
+    #             current_embeddings.append(padding_hidden2)
+    #         else:
+    #             noise = noise.unsqueeze(0)
+    #             current_node = st[-1]
+    #             current_node_embedding = torch.cat((current_node.embedding, noise), dim = 1)
+    #             current_embeddings.append(current_node_embedding)
+                
         # for Computational symbols and Generated numbers
         self.concat_l = nn.Linear(hidden_size, hidden_size)
         self.concat_r = nn.Linear(hidden_size * 2, hidden_size)
@@ -258,7 +281,7 @@ class Prediction(nn.Module):
         current_attn = self.attn(current_embeddings.transpose(0, 1), encoder_outputs, seq_mask)
         # current_attn = current_attn + expanded_noises
         current_context = current_attn.bmm(encoder_outputs.transpose(0, 1))  # B x 1 x N
-
+        
         # the information to get the current quantity
         batch_size = current_embeddings.size(0)
         # predict the output (this node corresponding to output(number or operator)) with PADE
@@ -283,7 +306,7 @@ class Prediction(nn.Module):
 
         # return p_leaf, num_score, op, current_embeddings, current_attn
 
-        return num_score, op, current_node, current_context, embedding_weight
+        return num_score, op, current_node, current_context, embedding_weight, current_attn
 
 
 class GenerateNode(nn.Module):

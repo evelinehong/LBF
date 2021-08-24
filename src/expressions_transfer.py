@@ -99,18 +99,24 @@ def from_infix_to_prefix(expression):
     return res
 
 
-def out_expression_list(test, output_lang, num_list):
+def out_expression_list(test, output_lang, num_list, num_stack=None):
+    max_index = output_lang.n_words
     res = []
     for i in test:
         # if i == 0:
         #     return res
-        idx = output_lang.index2word[i]
-        if "NUM" in idx:
-            if int(idx[3:]) >= len(num_list):
-                return None
-            res.append(num_list[int(idx[3:])])
+        if i < max_index - 1:
+            idx = output_lang.index2word[i]
+            if idx[0] == "N":
+                if int(idx[1:]) >= len(num_list):
+                    return None
+                res.append(num_list[int(idx[1:])])
+            else:
+                res.append(idx)
         else:
-            res.append(idx)
+            pos_list = num_stack.pop()
+            c = num_list[pos_list[0]]
+            res.append(c)
     return res
 
 def compute_postfix_expression(post_fix):
