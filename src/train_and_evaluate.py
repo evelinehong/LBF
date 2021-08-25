@@ -573,7 +573,7 @@ def train_tree(input_batch, input_length, num_size_batch,
         loss1 = masked_cross_entropy(all_node_outputs, target, target_length_mapo)
         #loss = loss1
         loss1.backward()
-        loss += loss1
+        loss += loss1.long().cpu()
         # clip the grad
         # torch.nn.utils.clip_grad_norm_(encoder.parameters(), 5)
         # torch.nn.utils.clip_grad_norm_(predict.parameters(), 5)
