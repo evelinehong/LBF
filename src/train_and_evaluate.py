@@ -375,22 +375,18 @@ def train_tree(input_batch, input_length, num_size_batch,
                     fix_found[idx] = True
                     fix_exp = out_expression_list(fix, output_lang, num)
                     fix_infix = prefix_to_infix(fix_exp, target_length[idx])
-                    try:
-                        y = eval(fix_infix)
-                        #if y == eval(num_ans[idx]):
-                        if model == 'fix':
-                            fix_target_list.append(fix)                                                                                                                                                                                                                     
-                            fix_index.append(idx)
-                            fix_target_length.append(len(fix))
-                            fix_input_length.append(input_length[idx])
-                        elif model == 'ma-fix':
-                            if not fix in buffer_batch_new[idx]:
-                                buffer_batch_new[idx].append(fix)
-                                buffer_batch_new_exp[idx].append(fix_infix)
-                    except:
-                        pass
-                
-                
+
+                    #y = eval(fix_infix)
+                    #if y == eval(num_ans[idx]):
+                    if model == 'fix':
+                        fix_target_list.append(fix)                                                                                                                                                                                                                     
+                        fix_index.append(idx)
+                        fix_target_length.append(len(fix))
+                        fix_input_length.append(input_length[idx])
+                    elif model == 'ma-fix':
+                        if not fix in buffer_batch_new[idx]:
+                            buffer_batch_new[idx].append(fix)
+                            buffer_batch_new_exp[idx].append(fix_infix)                
 
             if model in ['reinforce', 'mapo']:
                 try:
