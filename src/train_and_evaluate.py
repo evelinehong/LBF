@@ -62,13 +62,13 @@ def find_fix(pred, gt, all_prob, sym_list, num_start, n_step):
 
         for i in range(len(pred)):
             if  any(char.isdigit() for char in pred[i]):
-                fractions = re.findall("\d+\(\d+\/\d+\)", pred[i])
-                if len(fractions):
-                    pred[i] = pred[i].replace("(", "+(")
+#                 fractions = re.findall("\d+\(\d+\/\d+\)", pred[i])
+#                 if len(fractions):
+#                     pred[i] = pred[i].replace("(", "+(")
 
-                fractions2 = re.findall("\d+\(\(\d+\)\/\(\d+\)\)", pred[i])
-                if len(fractions2):
-                    pred[i] = pred[i].replace("((", "+((")
+#                 fractions2 = re.findall("\d+\(\(\d+\)\/\(\d+\)\)", pred[i])
+#                 if len(fractions2):
+#                     pred[i] = pred[i].replace("((", "+((")
 
                 pred[i] = eval(pred[i].replace("%", "/100"))
 
@@ -78,13 +78,13 @@ def find_fix(pred, gt, all_prob, sym_list, num_start, n_step):
         for i in range(len(sym_list)):
             if  any(char.isdigit() for char in sym_list[i]):
 
-                fractions = re.findall("\d+\(\d+\/\d+\)", sym_list[i])
-                if len(fractions):
-                    sym_list[i] = sym_list[i].replace("(", "+(")
+#                 fractions = re.findall("\d+\(\d+\/\d+\)", sym_list[i])
+#                 if len(fractions):
+#                     sym_list[i] = sym_list[i].replace("(", "+(")
 
-                fractions2 = re.findall("\d+\(\(\d+\)\/\(\d+\)\)", sym_list[i])
-                if len(fractions2):
-                    sym_list[i] = sym_list[i].replace("((", "+((")
+#                 fractions2 = re.findall("\d+\(\(\d+\)\/\(\d+\)\)", sym_list[i])
+#                 if len(fractions2):
+#                     sym_list[i] = sym_list[i].replace("((", "+((")
 
                 sym_list[i] = eval(sym_list[i].replace("%", "/100"))
             if sym_list[i] == "^":
