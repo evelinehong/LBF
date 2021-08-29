@@ -291,6 +291,7 @@ def transfer_num(data):  # transfer num into "NUM"
         fractions = re.findall("\d+\(\d+\/\d+\)", answer)
         if len(fractions):
             answer = answer.replace("(", "+(")
+        answer = answer.replace("%", "/100")
         equations = d["equation"][2:]
         id2 = d["id"]
         i = 0
