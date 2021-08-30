@@ -3,6 +3,9 @@ This repository is the implementation for the AAAI2021 accepted paper:
 > [Learning by Fixing: Solving Math Word Problems with Weak Supervision](https://arxiv.org/pdf/2012.10582.pdf)
 > AAAI2021. 
 
+## Checkpoint
+Checkpoint is provided [here](https://drive.google.com/drive/folders/1-BHCZrB_oLt-vgqjI6gI7YdOU68YAZ-X?usp=sharing)
+
 ## Seq2Tree Model
 A [Seq2Tree](https://github.com/ShichaoSun/math_seq2tree) Neural Network containing top-down Recursive Neural Network and bottom-up Recursive Neural Network
 
