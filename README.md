@@ -4,7 +4,7 @@ This repository is the implementation for the AAAI2021 accepted paper:
 > AAAI2021. 
 
 ## Checkpoint
-Checkpoint is provided [here](https://drive.google.com/drive/folders/1-BHCZrB_oLt-vgqjI6gI7YdOU68YAZ-X?usp=sharing)
+Checkpoint is provided [here](https://drive.google.com/drive/folders/1-BHCZrB_oLt-vgqjI6gI7YdOU68YAZ-X?usp=sharing). The checkpoint can achieve 59.8% accuracy, which is slightly better than the result reported in the paper.
 
 ## Seq2Tree Model
 A [Seq2Tree](https://github.com/ShichaoSun/math_seq2tree) Neural Network containing top-down Recursive Neural Network and bottom-up Recursive Neural Network
